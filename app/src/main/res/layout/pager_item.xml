@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/item_bg_shadow"
+    android:layout_marginTop="@dimen/item_margin"
+    android:layout_marginBottom="@dimen/default_negative_margin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/item_name"
+        android:textSize="@dimen/regular_text_size"
+        android:textColor="@color/colorAccent"
+        android:gravity="center"
+        android:text="Item Name"
+        android:layout_marginTop="@dimen/pager_view_margin"
+        android:layout_marginLeft="@dimen/pager_view_margin"
+        android:layout_marginRight="@dimen/pager_view_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="@dimen/pager_view_margin"
+        android:layout_marginLeft="@dimen/pager_view_margin"
+        android:layout_marginRight="@dimen/pager_view_margin">
+
+        <TextView
+            android:id="@+id/name_header"
+            android:text="@string/paidHeaderText"
+            android:gravity="left"
+            android:textSize="@dimen/small_text_size"
+            android:textColor="@color/grey"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/paid_header"
+            android:text="@string/nameHeaderText"
+            android:gravity="right"
+            android:textSize="@dimen/small_text_size"
+            android:textColor="@color/grey"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list_recycler_view"
+        android:overScrollMode="never"
+        android:requiresFadingEdge="horizontal"
+        android:fadingEdgeLength="20dp"
+        android:layout_marginLeft="@dimen/pager_view_margin"
+        android:layout_marginRight="@dimen/pager_view_margin"
+        android:layout_marginBottom="@dimen/pager_item_negative_item_padding"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

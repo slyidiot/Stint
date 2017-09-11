@@ -1,0 +1,12 @@
+<com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/collect_viewpager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:overScrollMode="never"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    app:rvp_triggerOffset="0.1"
+    app:rvp_singlePageFling="false"
+    android:clipToPadding="false" />

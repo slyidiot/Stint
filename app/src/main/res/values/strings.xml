@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Stint</string>
+    <string name="tab_item_1">C O L L E C T</string>
+    <string name="tab_item_2">D E L I V E R</string>
+    <string name="nameHeaderText">NAME</string>
+    <string name="paidHeaderText">PAID</string>
+</resources>

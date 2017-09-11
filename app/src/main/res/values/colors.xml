@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#344766</color>
+    <color name="colorAccent">#344766</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="bg_bluish_white">#EBEDF2</color>
+    <color name="grey">#D6DADF</color>
+    <color name="black">#000000</color>
+    <color name="not_paid">#f44336</color>
+    <color name="paid">#4CAF50</color>
+
+</resources>
