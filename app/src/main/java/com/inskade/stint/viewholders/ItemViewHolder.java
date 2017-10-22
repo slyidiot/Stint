@@ -19,6 +19,7 @@ public class ItemViewHolder extends RecyclerView.ViewHolder{
 
     private TextView name;
     private ImageView paidStatus;
+    private View itemView;
 
     private Typeface covesBold;
 
@@ -28,13 +29,29 @@ public class ItemViewHolder extends RecyclerView.ViewHolder{
 
         this.name = itemView.findViewById(R.id.entity_name);
         this.paidStatus = itemView.findViewById(R.id.paid_status_imageview);
+        this.itemView = itemView;
     }
 
-    public void bindEntity(Item item, int position) {
+    public void bindEntity(final Item item, int position) {
         this.position = position;
         this.item = item;
 
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(item.paid) {
+                    item.paid = false;
+                } else {
+                    item.paid = true;
+                }
+                updateItemPaidStatus(item);
+            }
+        });
+
         name.setText(item.name);
+        updateItemPaidStatus(item);
+    }
+    private void updateItemPaidStatus(Item item) {
         if(item.paid)
             paidStatus.setBackgroundColor(context.getResources().getColor(R.color.paid));
         else

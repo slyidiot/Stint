@@ -20,7 +20,7 @@ public interface ItemDao {
     public List<Item> getAllItems();
 
     @Query("select * from item where itemID = :itemID")
-    public List<Item> getItemsByID(long itemID);
+    public List<Item> getItemsByID(String itemID);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateItem(Item item);

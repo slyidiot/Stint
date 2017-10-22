@@ -7,11 +7,11 @@ import android.arch.persistence.room.PrimaryKey;
 public class ItemCollection {
 
     @PrimaryKey
-    public int id;
+    public String id;
     public String itemName;
     public float individualCost;
 
-    public ItemCollection(int id,String itemName, float individualCost) {
+    public ItemCollection(String id,String itemName, float individualCost) {
         this.id = id;
         this.itemName = itemName;
         this.individualCost = individualCost;
@@ -22,11 +22,11 @@ public class ItemCollection {
     }
 
     public static class ItemCollectionBuilder {
-        private int id;
+        private String id;
         private String itemName;
         private float individualCost;
 
-        public ItemCollectionBuilder setID(int id) {
+        public ItemCollectionBuilder setID(String id) {
             this.id = id;
             return this;
         }

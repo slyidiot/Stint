@@ -67,7 +67,6 @@ public class CollectViewHolder extends RecyclerView.ViewHolder{
 
         //TODO:Remove this
         items = (ArrayList<Item>) database.itemModel().getItemsByID(itemCollection.id);
-        Log.d("Blah" ,""+items.size());
         itemRecyclerAdapter.setItems(items);
     }
 }

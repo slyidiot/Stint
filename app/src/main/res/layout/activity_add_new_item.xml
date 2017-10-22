@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/default_margin"
+    android:paddingRight="@dimen/default_margin"
+    android:paddingTop="@dimen/default_margin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.github.florent37.materialtextfield.MaterialTextField
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:mtf_openKeyboardOnFocus="true"
+        app:mtf_labelColor="@color/grey">
+
+        <EditText
+            android:id="@+id/name_input"
+            android:hint="@string/add_item_name"
+            android:background="@color/transparent"
+            android:maxLines="1"
+            android:inputType="text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.github.florent37.materialtextfield.MaterialTextField>
+
+    <com.github.florent37.materialtextfield.MaterialTextField
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:mtf_openKeyboardOnFocus="true"
+        app:mtf_labelColor="@color/grey">
+
+        <EditText
+            android:id="@+id/single_cost_input"
+            android:hint="@string/add_item_cost"
+            android:maxLines="1"
+            android:inputType="numberDecimal"
+            android:background="@color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.github.florent37.materialtextfield.MaterialTextField>
+
+    <View
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/done_adding"
+        android:src="@drawable/ic_done_black_24dp"
+        android:layout_marginBottom="@dimen/default_margin"
+        android:layout_gravity="end"
+        app:fabSize="normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

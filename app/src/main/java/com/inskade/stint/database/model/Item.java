@@ -7,12 +7,12 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class Item {
 
-    public int itemID;
     @PrimaryKey
+    public String itemID;
     public String name;
     public boolean paid;
 
-    public Item(int itemID, String name, boolean paid) {
+    public Item(String itemID, String name, boolean paid) {
         this.itemID = itemID;
         this.name = name;
         this.paid = paid;
@@ -23,11 +23,11 @@ public class Item {
     }
 
     public static class ItemBuilder {
-        private int entityID;
+        private String entityID;
         private String name;
         private boolean paid;
 
-        public ItemBuilder setID(int entityID) {
+        public ItemBuilder setID(String entityID) {
             this.entityID = entityID;
             return this;
         }

@@ -1,9 +1,12 @@
 package com.inskade.stint.ui.activities;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gigamole.navigationtabstrip.NavigationTabStrip;
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView singleCost;
     private TextView totalCost;
+    private ImageView addItem;
 
     private AppDatabase database;
 
@@ -38,11 +42,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        insertDemoData();
         findViews();
+        setListeners();
         setupNavStrip();
         initFragments();
         setTypefaces();
+    }
+
+    private void setListeners() {
+        addItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,AddNewItemActivity.class));
+            }
+        });
     }
 
     private void setupNavStrip() {
@@ -62,19 +75,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private void insertDemoData() {
-
-        database = AppDatabase.getDatabase(getApplicationContext());
-        for(int i = 0; i<10; i++) {
-            ItemCollection itemCollection = ItemCollection.builder().setID(i).setName("Item "+i).setIndividualCost(new Random().nextFloat()).build();
-            database.itemCollectionModel().addItemCollection(itemCollection);
-            for(int j=0; j<20;j++) {
-                Item item = Item.builder().setID(i).setName("Person "+i+"."+j).setPaid(new Random().nextBoolean()).build();
-                database.itemModel().addItem(item);
-            }
-        }
     }
 
     private void initFragments() {
@@ -106,5 +106,6 @@ public class MainActivity extends AppCompatActivity {
         singleCost = (TextView) findViewById(R.id.single_cost_textview);
         totalCost = (TextView) findViewById(R.id.total_cost_textview);
         navigationTabStrip = (NavigationTabStrip) findViewById(R.id.navigation_tab_strip);
+        addItem = (ImageView) findViewById(R.id.add_new_list_icon);
     }
 }

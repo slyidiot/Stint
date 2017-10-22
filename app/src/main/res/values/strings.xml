@@ -2,6 +2,8 @@
     <string name="app_name">Stint</string>
     <string name="tab_item_1">C O L L E C T</string>
     <string name="tab_item_2">D E L I V E R</string>
-    <string name="nameHeaderText">NAME</string>
-    <string name="paidHeaderText">PAID</string>
+    <string name="name_header_text">NAME</string>
+    <string name="paid_header_text">PAID</string>
+    <string name="add_item_name">NAME</string>
+    <string name="add_item_cost">COST</string>
 </resources>
