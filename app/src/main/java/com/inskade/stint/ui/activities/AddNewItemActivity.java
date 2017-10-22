@@ -1,14 +1,17 @@
 package com.inskade.stint.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.inskade.stint.R;
+import com.inskade.stint.Stint;
 import com.inskade.stint.database.AppDatabase;
 import com.inskade.stint.database.model.Item;
 import com.inskade.stint.database.model.ItemCollection;
@@ -23,11 +26,9 @@ public class AddNewItemActivity extends AppCompatActivity {
     private EditText costInput;
     private FloatingActionButton doneFAB;
 
-    private AppDatabase database;
-
     private String name;
     private float cost;
-    private ArrayList<String> names;
+    private String[] names;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,9 +36,7 @@ public class AddNewItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_new_item);
 
         findViews();
-
-        names=new ArrayList<String>();
-        loadNames();
+        names = getResources().getStringArray(R.array.students_array);
 
         doneFAB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,19 +48,13 @@ public class AddNewItemActivity extends AppCompatActivity {
                 } else {
                     insertData(name, cost);
                     Toast.makeText(AddNewItemActivity.this, "Added "+name, Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(AddNewItemActivity.this, MainActivity.class));
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                     finish();
                 }
             }
         });
 
-    }
-
-    private void loadNames() {
-        names.add("A");
-        names.add("B");
-        names.add("C");
-        names.add("D");
-        names.add("E");
     }
 
     private void findViews() {
@@ -75,13 +68,20 @@ public class AddNewItemActivity extends AppCompatActivity {
         UUID uuid = UUID.randomUUID();
         String itemID = uuid.toString();
 
-        database = AppDatabase.getDatabase(getApplicationContext());
-        ItemCollection itemCollection = ItemCollection.builder().setID(itemID).setName(insertName).setIndividualCost(insertCost).build();
-        database.itemCollectionModel().addItemCollection(itemCollection);
+        ItemCollection itemCollection = ItemCollection.builder().setID(itemID).setName(insertName).setIndividualCost(insertCost).setDeliverStatus(false).build();
+        Stint.getInstance().database.itemCollectionModel().addItemCollection(itemCollection);
 
-        for(String personName:names) {
-            Item item = Item.builder().setID(itemID).setName(personName).setPaid(false).build();
-            database.itemModel().addItem(item);
+        for(int i=0; i<names.length;i++) {
+            Item item = Item.builder().setID(itemID+i+1).setCollectionID(itemID).setName(names[i]).setPaid(false).build();
+            Stint.getInstance().database.itemModel().addItem(item);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(AddNewItemActivity.this, MainActivity.class));
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        finish();
     }
 }

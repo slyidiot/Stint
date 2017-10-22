@@ -6,4 +6,7 @@
     <string name="paid_header_text">PAID</string>
     <string name="add_item_name">NAME</string>
     <string name="add_item_cost">COST</string>
+
+    <string name="default_single_cost_text">₹0</string>
+    <string name="default_total_cost_text">Total: ₹0</string>
 </resources>

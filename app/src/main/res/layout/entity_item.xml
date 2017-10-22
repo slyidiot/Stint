@@ -9,17 +9,18 @@
         android:id="@+id/entity_name"
         android:text="Entity"
         android:textColor="@color/black"
-        android:textSize="@dimen/small_text_size"
+        android:textSize="@dimen/smaller_text_size"
         android:gravity="center_vertical"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"/>
 
     <ImageView
         android:id="@+id/paid_status_imageview"
         android:layout_gravity="center"
-        android:background="@color/paid"
+        android:src="@drawable/paid_drawable"
         android:layout_marginStart="10dp"
+        android:padding="8dp"
         android:layout_width="@dimen/paid_status_dimen"
         android:layout_height="@dimen/paid_status_dimen" />
 

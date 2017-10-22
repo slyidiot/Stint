@@ -10,11 +10,13 @@ public class ItemCollection {
     public String id;
     public String itemName;
     public float individualCost;
+    public boolean deliverStatus;
 
-    public ItemCollection(String id,String itemName, float individualCost) {
+    public ItemCollection(String id,String itemName, float individualCost, boolean deliverStatus) {
         this.id = id;
         this.itemName = itemName;
         this.individualCost = individualCost;
+        this.deliverStatus = deliverStatus;
     }
 
     public static ItemCollectionBuilder builder() {
@@ -25,6 +27,7 @@ public class ItemCollection {
         private String id;
         private String itemName;
         private float individualCost;
+        public boolean deliverStatus;
 
         public ItemCollectionBuilder setID(String id) {
             this.id = id;
@@ -41,8 +44,13 @@ public class ItemCollection {
             return this;
         }
 
+        public ItemCollectionBuilder setDeliverStatus(boolean deliverStatus) {
+            this.deliverStatus = deliverStatus;
+            return this;
+        }
+
         public ItemCollection build() {
-            return new ItemCollection(id, itemName, individualCost);
+            return new ItemCollection(id, itemName, individualCost, deliverStatus);
         }
     }
 }

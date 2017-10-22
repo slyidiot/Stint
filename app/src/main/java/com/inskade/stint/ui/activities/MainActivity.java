@@ -2,46 +2,48 @@ package com.inskade.stint.ui.activities;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gigamole.navigationtabstrip.NavigationTabStrip;
 import com.inskade.stint.R;
-import com.inskade.stint.database.AppDatabase;
-import com.inskade.stint.database.model.Item;
-import com.inskade.stint.database.model.ItemCollection;
 import com.inskade.stint.misc.TypefaceCache;
 import com.inskade.stint.ui.fragments.CollectFragment;
 import com.inskade.stint.ui.fragments.DeliverFragment;
 
-import java.util.Random;
-
 public class MainActivity extends AppCompatActivity {
 
     private static final int FRAGMENT_CONTAINER_ID = R.id.fragment_container;
-
+    public static MainActivity instance;
+    public TextView singleCost;
+    public TextView totalCost;
+    public ImageView addItem;
+    private boolean doubleBackToExitPressedOnce = false;
     private NavigationTabStrip navigationTabStrip;
     private FragmentManager fragmentManager;
     private CollectFragment collectFragment;
     private DeliverFragment deliverFragment;
-
     private Typeface bebasBold;
 
-    private TextView singleCost;
-    private TextView totalCost;
-    private ImageView addItem;
-
-    private AppDatabase database;
+    public static MainActivity getInstance() {
+        if (instance == null) {
+            instance = new MainActivity();
+        }
+        return instance;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        instance = this;
         findViews();
         setListeners();
         setupNavStrip();
@@ -53,9 +55,30 @@ public class MainActivity extends AppCompatActivity {
         addItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,AddNewItemActivity.class));
+                startActivity(new Intent(MainActivity.this, AddNewItemActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
     }
 
     private void setupNavStrip() {
@@ -68,10 +91,22 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onEndTabSelected(String title, int index) {
-                if(title.equals(getString(R.string.tab_item_1))) {
+                if (title.equals(getString(R.string.tab_item_1))) {
                     fragmentManager.beginTransaction().replace(FRAGMENT_CONTAINER_ID, collectFragment).commit();
-                } else if(title.equals(getString(R.string.tab_item_2))) {
+                    try {
+                        collectFragment.updateCostTextViews(collectFragment.recyclerViewPager.getCurrentPosition());
+                    } catch (Exception e) {
+                        singleCost.setText(getString(R.string.default_single_cost_text));
+                        totalCost.setText(getString(R.string.default_total_cost_text));
+                    }
+                } else if (title.equals(getString(R.string.tab_item_2))) {
                     fragmentManager.beginTransaction().replace(FRAGMENT_CONTAINER_ID, deliverFragment).commit();
+                    try {
+                        deliverFragment.updateCountTextViews(deliverFragment.recyclerViewPager.getCurrentPosition());
+                    } catch (Exception e) {
+                        singleCost.setText("0");
+                        totalCost.setText("Remaining");
+                    }
                 }
             }
         });

@@ -10,17 +10,15 @@ import android.widget.TextView;
 import com.inskade.stint.R;
 import com.inskade.stint.Stint;
 import com.inskade.stint.adapters.ItemRecyclerAdapter;
+import com.inskade.stint.database.model.Item;
 import com.inskade.stint.database.model.ItemCollection;
 import com.inskade.stint.misc.TypefaceCache;
-import com.inskade.stint.database.model.Item;
-import com.inskade.stint.ui.activities.MainActivity;
 import com.inskade.stint.ui.fragments.CollectFragment;
+import com.inskade.stint.ui.fragments.DeliverFragment;
 
 import java.util.ArrayList;
 
-import static java.lang.String.valueOf;
-
-public class CollectViewHolder extends RecyclerView.ViewHolder{
+public class DeliverViewHolder extends RecyclerView.ViewHolder{
 
     private Context context;
     private int position;
@@ -38,7 +36,7 @@ public class CollectViewHolder extends RecyclerView.ViewHolder{
 
     private Typeface covesBold;
 
-    public CollectViewHolder(View itemView) {
+    public DeliverViewHolder(View itemView) {
         super(itemView);
         this.context = itemView.getContext();
 
@@ -51,7 +49,7 @@ public class CollectViewHolder extends RecyclerView.ViewHolder{
 
         LinearLayoutManager layout = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layout);
-        itemRecyclerAdapter = new ItemRecyclerAdapter(items, context, Stint.COLLECT_FRAGMENT);
+        itemRecyclerAdapter = new ItemRecyclerAdapter(items, context, Stint.DELIVER_FRAGMENT);
         recyclerView.setAdapter(itemRecyclerAdapter);
 
         covesBold = TypefaceCache.get(context.getAssets(), "CovesBold");
@@ -67,11 +65,11 @@ public class CollectViewHolder extends RecyclerView.ViewHolder{
         name.setText(itemCollection.itemName.toUpperCase());
 
         //TODO:Remove this
-        items = (ArrayList<Item>) Stint.getInstance().database.itemModel().getItemsByID(itemCollection.id);
+        items = (ArrayList<Item>) Stint.getInstance().database.itemModel().getPaidItems(itemCollection.id);
         itemRecyclerAdapter.setItems(items);
         if(items.isEmpty()) {
-            Stint.getInstance().database.itemCollectionModel().removeItemCollection(itemCollection.id);
-            CollectFragment.getInstance().refreshDataset();
+            itemCollection.deliverStatus = false;
+            DeliverFragment.getInstance().refreshDataset();
         }
     }
 }

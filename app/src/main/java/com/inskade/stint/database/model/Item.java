@@ -9,11 +9,13 @@ public class Item {
 
     @PrimaryKey
     public String itemID;
+    public String itemCollectionID;
     public String name;
     public boolean paid;
 
-    public Item(String itemID, String name, boolean paid) {
+    public Item(String itemID, String itemCollectionID, String name, boolean paid) {
         this.itemID = itemID;
+        this.itemCollectionID = itemCollectionID;
         this.name = name;
         this.paid = paid;
     }
@@ -24,11 +26,17 @@ public class Item {
 
     public static class ItemBuilder {
         private String entityID;
+        private String itemCollectionID;
         private String name;
         private boolean paid;
 
         public ItemBuilder setID(String entityID) {
             this.entityID = entityID;
+            return this;
+        }
+
+        public ItemBuilder setCollectionID(String itemCollectionID) {
+            this.itemCollectionID = itemCollectionID;
             return this;
         }
 
@@ -43,7 +51,7 @@ public class Item {
         }
 
         public Item build() {
-            return new Item(entityID, name, paid);
+            return new Item(entityID, itemCollectionID, name, paid);
         }
     }
 }

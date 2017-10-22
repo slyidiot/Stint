@@ -20,12 +20,21 @@ public interface ItemCollectionDao {
     @Query("select * from itemCollection")
     public List<ItemCollection> getAllItemCollections();
 
+    @Query("select * from itemCollection where deliverStatus = 1")
+    public List<ItemCollection> getDeliverReadyItemCollections();
+
     @Query("select * from itemCollection where id = :id")
     public List<ItemCollection> getItemCollection(long id);
+
+    @Query("select * from itemCollection where id = :id")
+    public ItemCollection getSingleItemCollection(String id);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateItemCollection(ItemCollection itemCollection);
 
     @Query("delete from itemCollection")
     void removeAllItemCollections();
+
+    @Query("delete from itemCollection where id = :id")
+    void removeItemCollection(String id);
 }

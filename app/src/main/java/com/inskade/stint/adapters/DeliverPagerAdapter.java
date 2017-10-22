@@ -9,27 +9,28 @@ import android.view.ViewGroup;
 import com.inskade.stint.R;
 import com.inskade.stint.database.model.ItemCollection;
 import com.inskade.stint.viewholders.CollectViewHolder;
+import com.inskade.stint.viewholders.DeliverViewHolder;
 
 import java.util.ArrayList;
 
-public class CollectPagerAdapter extends RecyclerView.Adapter<CollectViewHolder>{
+public class DeliverPagerAdapter extends RecyclerView.Adapter<DeliverViewHolder>{
 
     private ArrayList<ItemCollection> itemCollections;
     private Context context;
 
-    public CollectPagerAdapter(ArrayList<ItemCollection> itemCollections, Context context) {
+    public DeliverPagerAdapter(ArrayList<ItemCollection> itemCollections, Context context) {
         this.itemCollections = itemCollections;
         this.context = context;
     }
 
     @Override
-    public CollectViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public DeliverViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.pager_item, parent, false);
-        return new CollectViewHolder(view);
+        return new DeliverViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(CollectViewHolder holder, int position) {
+    public void onBindViewHolder(DeliverViewHolder holder, int position) {
         ItemCollection itemCollection = this.itemCollections.get(position);
         holder.bindItem(itemCollection, position);
     }

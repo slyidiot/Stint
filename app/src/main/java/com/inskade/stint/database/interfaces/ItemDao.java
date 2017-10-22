@@ -19,12 +19,18 @@ public interface ItemDao {
     @Query("select * from item")
     public List<Item> getAllItems();
 
-    @Query("select * from item where itemID = :itemID")
-    public List<Item> getItemsByID(String itemID);
+    @Query("select * from item where itemCollectionID = :itemCollectionID")
+    public List<Item> getItemsByID(String itemCollectionID);
+
+    @Query("select * from item where paid = 1 and itemCollectionID = :itemCollectionID")
+    public List<Item> getPaidItems(String itemCollectionID);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateItem(Item item);
 
     @Query("delete from item")
     void removeAllItems();
+
+    @Query("delete from item where itemID = :itemID")
+    void removeItem(String itemID);
 }

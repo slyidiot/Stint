@@ -16,10 +16,12 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemViewHolder>{
 
     private ArrayList<Item> items;
     private Context context;
+    private int fragmentCode;
 
-    public ItemRecyclerAdapter(ArrayList<Item> items, Context context) {
+    public ItemRecyclerAdapter(ArrayList<Item> items, Context context, int fragmentCode) {
         this.items = items;
         this.context = context;
+        this.fragmentCode = fragmentCode;
     }
 
     public void setItems(ArrayList<Item> entities) {
@@ -32,7 +34,7 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<ItemViewHolder>{
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.entity_item, parent, false);
-        return new ItemViewHolder(view, context);
+        return new ItemViewHolder(view, context, fragmentCode);
     }
 
     @Override

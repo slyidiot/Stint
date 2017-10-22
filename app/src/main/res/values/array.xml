@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="students_array">
+        <item>JITHU KURIAKOSE</item>
+        <item>JITHU RAJ</item>
+        <item>JOEL THOMAS</item>
+        <item>JOGEY KRISTEN</item>
+        <item>K J AMRUTHA</item>
+        <item>KAVYA M T </item>
+        <item>KEERTHANA NAIR K J</item>
+        <item>KEERTHY RAJAN</item>
+        <item>KRISHNA A MENON</item>
+        <item>KRISHNAPRIYA P P</item>
+        <item>LAKSHMI BABU</item>
+        <item>LAKSHMI A. RAJU</item>
+        <item>LAKSHMI M S</item>
+        <item>MEENU RAJU</item>
+        <item>MIDHUNA ASHOK</item>
+        <item>MINU JOY</item>
+        <item>NAKUL K P </item>
+        <item>NANDU GANESH MENON</item>
+        <item>NARAYANI G</item>
+        <item>NAYANA NARAYAN</item>
+        <item>NEERAJ MOHAN</item>
+        <item>NIGIDHA K K</item>
+        <item>NIKHIL SUBASH</item>
+        <item>NIMAL VIJU</item>
+        <item>NIMMY JOHN</item>
+        <item>OLICKAL NIMISHA JACOB</item>
+        <item>PARVATHY DEVI P</item>
+        <item>PRITHVIN M S</item>
+        <item>REBIN BABY</item>
+        <item>REVATHY SURESH</item>
+        <item>RICHU REMESH R</item>
+        <item>RISHABH RAVINDRAN</item>
+        <item>SACHIN P B</item>
+        <item>SAFANA SALIM</item>
+        <item>SANAMOL M A</item>
+        <item>SARANG S</item>
+        <item>SHYAM RAJAGOPAL</item>
+        <item>SRIJIT RANJIT</item>
+        <item>SURYA C S</item>
+        <item>SWANTHANA SANTHOSH</item>
+        <item>THOM MANDAPATHIL</item>
+        <item>VAISAKH J NAIR</item>
+        <item>VISHAL JAYARAJ</item>
+        <item>VISHNU PERADI</item>
+        <item>YADHUKRISHNA</item>
+
+    </string-array>
+
+</resources>
