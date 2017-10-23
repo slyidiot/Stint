@@ -5,6 +5,7 @@
     android:paddingLeft="@dimen/default_margin"
     android:paddingRight="@dimen/default_margin"
     android:paddingTop="@dimen/default_margin"
+    android:background="@color/colorPrimaryDark"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -19,6 +20,8 @@
             android:hint="@string/add_item_name"
             android:background="@color/transparent"
             android:maxLines="1"
+            android:textColor="@color/colorPrimaryDark"
+            android:textCursorDrawable="@null"
             android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -35,6 +38,8 @@
             android:id="@+id/single_cost_input"
             android:hint="@string/add_item_cost"
             android:maxLines="1"
+            android:textColor="@color/colorPrimaryDark"
+            android:textCursorDrawable="@null"
             android:inputType="numberDecimal"
             android:background="@color/transparent"
             android:layout_width="match_parent"
@@ -50,8 +55,9 @@
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/done_adding"
         android:src="@drawable/ic_done_black_24dp"
+        android:tint="@color/colorPrimaryDark"
         android:layout_marginBottom="@dimen/default_margin"
-        android:layout_gravity="end"
+        android:layout_gravity="center"
         app:fabSize="normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

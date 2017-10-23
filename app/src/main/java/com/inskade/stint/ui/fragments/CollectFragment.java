@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +12,12 @@ import android.view.ViewGroup;
 import com.inskade.stint.R;
 import com.inskade.stint.Stint;
 import com.inskade.stint.adapters.CollectPagerAdapter;
-import com.inskade.stint.database.AppDatabase;
 import com.inskade.stint.database.model.Item;
 import com.inskade.stint.database.model.ItemCollection;
 import com.inskade.stint.ui.activities.MainActivity;
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import static java.lang.String.valueOf;
 
@@ -45,7 +44,6 @@ public class CollectFragment extends Fragment{
 
         convertView = inflater.inflate(R.layout.fragment_collect, container, false);
         instance = this;
-        itemCollections = (ArrayList<ItemCollection>) Stint.getInstance().database.itemCollectionModel().getAllItemCollections();
 
         findViews();
         setupRecyclerViewPager();
@@ -55,6 +53,7 @@ public class CollectFragment extends Fragment{
 
     private void setupRecyclerViewPager() {
 
+        itemCollections = (ArrayList<ItemCollection>) Stint.getInstance().database.itemCollectionModel().getAllItemCollections();
         LinearLayoutManager layout = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewPager.setLayoutManager(layout);
         recyclerViewPager.setNestedScrollingEnabled(false);
@@ -67,6 +66,7 @@ public class CollectFragment extends Fragment{
                 updateCostTextViews(i1);
             }
         });
+
         try {
             updateCostTextViews(recyclerViewPager.getCurrentPosition());
         } catch (Exception e) {

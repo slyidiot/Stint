@@ -2,9 +2,11 @@ package com.inskade.stint.viewholders;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.media.Image;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.inskade.stint.R;
@@ -24,12 +26,14 @@ public class CollectViewHolder extends RecyclerView.ViewHolder{
 
     private Context context;
     private int position;
+    private boolean allPaid = true;
 
     private ItemCollection itemCollection;
 
     private TextView name;
     private TextView nameHeader;
     private TextView paidHeader;
+    private ImageView checkedOut;
     private RecyclerView recyclerView;
 
     private ItemRecyclerAdapter itemRecyclerAdapter;
@@ -46,6 +50,7 @@ public class CollectViewHolder extends RecyclerView.ViewHolder{
         this.recyclerView = (RecyclerView) itemView.findViewById(R.id.list_recycler_view);
         this.nameHeader = (TextView) itemView.findViewById(R.id.name_header);
         this.paidHeader = (TextView) itemView.findViewById(R.id.paid_header);
+        this.checkedOut = (ImageView) itemView.findViewById(R.id.checked_out);
 
         items = new ArrayList<>();
 
@@ -72,6 +77,18 @@ public class CollectViewHolder extends RecyclerView.ViewHolder{
         if(items.isEmpty()) {
             Stint.getInstance().database.itemCollectionModel().removeItemCollection(itemCollection.id);
             CollectFragment.getInstance().refreshDataset();
+        } else {
+            for(Item item: items) {
+                if(!item.paid) {
+                    allPaid = false;
+                    break;
+                }
+            }
+            if(allPaid) {
+                checkedOut.setVisibility(View.VISIBLE);
+            } else {
+                checkedOut.setVisibility(View.INVISIBLE);
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.inskade.stint;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.inskade.stint.database.AppDatabase;
 import com.inskade.stint.database.model.Item;
@@ -35,7 +36,7 @@ public class Stint extends Application {
     }
 
     public void updateDeliverStatus(String itemCollectionID) {
-        ArrayList<Item> items = (ArrayList<Item>) database.itemModel().getPaidItems(itemCollectionID);
+        ArrayList<Item> items = (ArrayList<Item>) database.itemModel().getPaidAndNotDeliveredItems(itemCollectionID);
         if(!items.isEmpty()) {
             ItemCollection itemCollection = database.itemCollectionModel().getSingleItemCollection(itemCollectionID);
             itemCollection.deliverStatus = true;

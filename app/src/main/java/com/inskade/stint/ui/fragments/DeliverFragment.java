@@ -4,13 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.inskade.stint.R;
 import com.inskade.stint.Stint;
-import com.inskade.stint.adapters.CollectPagerAdapter;
 import com.inskade.stint.adapters.DeliverPagerAdapter;
 import com.inskade.stint.database.model.Item;
 import com.inskade.stint.database.model.ItemCollection;
@@ -43,6 +43,8 @@ public class DeliverFragment extends Fragment{
         convertView = inflater.inflate(R.layout.fragment_collect, container, false);
         instance = this;
         itemCollections = (ArrayList<ItemCollection>) Stint.getInstance().database.itemCollectionModel().getDeliverReadyItemCollections();
+        if(itemCollections.isEmpty())
+            Log.d("ItemCollections", "isEmpty");
 
         findViews();
         setupRecyclerViewPager();
@@ -74,7 +76,7 @@ public class DeliverFragment extends Fragment{
 
 
     public void updateCountTextViews(int position) {
-        ArrayList<Item> paidItems = (ArrayList<Item>) Stint.getInstance().database.itemModel().getPaidItems(deliverPagerAdapter.getItem(position).id);
+        ArrayList<Item> paidItems = (ArrayList<Item>) Stint.getInstance().database.itemModel().getPaidAndNotDeliveredItems(deliverPagerAdapter.getItem(position).id);
         int x = paidItems.size();
         MainActivity.getInstance().singleCost.setText(""+x);
         MainActivity.getInstance().totalCost.setText("Remaining");
@@ -86,15 +88,15 @@ public class DeliverFragment extends Fragment{
             MainActivity.getInstance().singleCost.setText("0");
             MainActivity.getInstance().totalCost.setText("Remaining");
         }
+        try {
+            updateCountTextViews(recyclerViewPager.getCurrentPosition());
+        } catch (Exception e) {
+            //do nothing
+        }
         recyclerViewPager.post(new Runnable() {
             @Override
             public void run() {
                 deliverPagerAdapter.notifyDataSetChanged();
-                try {
-                    updateCountTextViews(recyclerViewPager.getCurrentPosition());
-                } catch (Exception e) {
-                    //do nothing
-                }
             }
         });
     }

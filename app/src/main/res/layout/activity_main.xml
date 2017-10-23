@@ -37,7 +37,7 @@
                 <ImageView
                     android:id="@+id/add_new_list_icon"
                     android:padding="10dp"
-                    android:tint="@color/colorAccent"
+                    android:tint="@color/colorPrimaryDark"
                     android:src="@drawable/ic_add_black_24dp"
                     android:layout_width="50dp"
                     android:layout_height="match_parent" />
@@ -49,7 +49,7 @@
                 android:textSize="@dimen/big_text_size"
                 android:gravity="center"
                 android:text="@string/default_single_cost_text"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorPrimaryDark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"/>
@@ -74,7 +74,7 @@
             android:layout_marginLeft="@dimen/tab_margin"
             android:layout_marginRight="@dimen/tab_margin"
             android:layout_marginBottom="1dp"
-            app:nts_color="@color/colorAccent"
+            app:nts_color="@color/colorPrimaryDark"
             android:layout_gravity="center"
             app:nts_size="15sp"
             app:nts_weight="3dp"
@@ -82,7 +82,7 @@
             app:nts_typeface="fonts/CovesBold.otf"
             app:nts_corners_radius="2dp"
             app:nts_animation_duration="150"
-            app:nts_active_color="@color/colorAccent"
+            app:nts_active_color="@color/colorPrimaryDark"
             app:nts_inactive_color="@color/grey"/>
 
     </android.support.design.widget.AppBarLayout>

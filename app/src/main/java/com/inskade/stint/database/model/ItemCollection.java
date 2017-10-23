@@ -2,11 +2,12 @@ package com.inskade.stint.database.model;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 @Entity
 public class ItemCollection {
 
-    @PrimaryKey
+    @PrimaryKey @NonNull
     public String id;
     public String itemName;
     public float individualCost;
