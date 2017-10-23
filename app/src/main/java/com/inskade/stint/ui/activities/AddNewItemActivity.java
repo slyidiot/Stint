@@ -68,7 +68,7 @@ public class AddNewItemActivity extends AppCompatActivity {
         UUID uuid = UUID.randomUUID();
         String itemID = uuid.toString();
 
-        ItemCollection itemCollection = ItemCollection.builder().setID(itemID).setName(insertName).setIndividualCost(insertCost).setDeliverStatus(false).build();
+        ItemCollection itemCollection = ItemCollection.builder().setID(itemID).setName(insertName).setIndividualCost(insertCost).setDeliverStatus(false).setAllPaid(false).build();
         Stint.getInstance().database.itemCollectionModel().addItemCollection(itemCollection);
 
         for(int i=0; i<names.length;i++) {

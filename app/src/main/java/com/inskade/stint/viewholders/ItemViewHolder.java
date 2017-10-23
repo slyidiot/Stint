@@ -55,8 +55,10 @@ public class ItemViewHolder extends RecyclerView.ViewHolder{
                 if(fragmentCode == Stint.COLLECT_FRAGMENT) {
                     if (item.paid) {
                         item.paid = false;
+                        item.delivered = false;
                     } else {
                         item.paid = true;
+                        item.delivered = false;
                     }
                     item.delivered = false;
                     Stint.getInstance().database.itemModel().updateItem(item);
