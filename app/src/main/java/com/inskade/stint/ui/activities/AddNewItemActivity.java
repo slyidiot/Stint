@@ -41,11 +41,11 @@ public class AddNewItemActivity extends AppCompatActivity {
         doneFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                name = nameInput.getText().toString();
-                cost = (Float) Float.parseFloat(costInput.getText().toString());
-                if(name.equals(null) || String.valueOf(cost).equals(null)) {
+                if(nameInput.getText().toString().equals("") || costInput.getText().toString().equals("")) {
                     Toast.makeText(AddNewItemActivity.this, "Enter Details!", Toast.LENGTH_SHORT).show();
                 } else {
+                    name = nameInput.getText().toString();
+                    cost = (Float) Float.parseFloat(costInput.getText().toString());
                     insertData(name, cost);
                     Toast.makeText(AddNewItemActivity.this, "Added "+name, Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(AddNewItemActivity.this, MainActivity.class));
@@ -68,11 +68,11 @@ public class AddNewItemActivity extends AppCompatActivity {
         UUID uuid = UUID.randomUUID();
         String itemID = uuid.toString();
 
-        ItemCollection itemCollection = ItemCollection.builder().setID(itemID).setName(insertName).setIndividualCost(insertCost).setDeliverStatus(false).build();
+        ItemCollection itemCollection = ItemCollection.builder().setID(itemID).setName(insertName).setIndividualCost(insertCost).setDeliverStatus(false).setAllPaid(false).build();
         Stint.getInstance().database.itemCollectionModel().addItemCollection(itemCollection);
 
         for(int i=0; i<names.length;i++) {
-            Item item = Item.builder().setID(itemID+i+1).setCollectionID(itemID).setName(names[i]).setPaid(false).build();
+            Item item = Item.builder().setID(itemID+i+1).setCollectionID(itemID).setName(names[i]).setPaid(false).setDelivered(false).build();
             Stint.getInstance().database.itemModel().addItem(item);
         }
     }

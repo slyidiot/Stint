@@ -2,21 +2,24 @@ package com.inskade.stint.database.model;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 @Entity
 public class ItemCollection {
 
-    @PrimaryKey
+    @PrimaryKey @NonNull
     public String id;
     public String itemName;
     public float individualCost;
     public boolean deliverStatus;
+    public boolean allPaid;
 
-    public ItemCollection(String id,String itemName, float individualCost, boolean deliverStatus) {
+    public ItemCollection(String id,String itemName, float individualCost, boolean deliverStatus, boolean allPaid) {
         this.id = id;
         this.itemName = itemName;
         this.individualCost = individualCost;
         this.deliverStatus = deliverStatus;
+        this.allPaid = false;
     }
 
     public static ItemCollectionBuilder builder() {
@@ -28,6 +31,7 @@ public class ItemCollection {
         private String itemName;
         private float individualCost;
         public boolean deliverStatus;
+        public boolean allPaid;
 
         public ItemCollectionBuilder setID(String id) {
             this.id = id;
@@ -49,8 +53,13 @@ public class ItemCollection {
             return this;
         }
 
+        public ItemCollectionBuilder setAllPaid(boolean allPaid) {
+            this.allPaid = allPaid;
+            return this;
+        }
+
         public ItemCollection build() {
-            return new ItemCollection(id, itemName, individualCost, deliverStatus);
+            return new ItemCollection(id, itemName, individualCost, deliverStatus, allPaid);
         }
     }
 }

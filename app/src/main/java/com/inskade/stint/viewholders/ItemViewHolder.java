@@ -11,11 +11,8 @@ import android.widget.Toast;
 
 import com.inskade.stint.R;
 import com.inskade.stint.Stint;
-import com.inskade.stint.database.AppDatabase;
-import com.inskade.stint.database.interfaces.ItemDao;
 import com.inskade.stint.database.model.Item;
 import com.inskade.stint.database.model.ItemCollection;
-import com.inskade.stint.ui.activities.MainActivity;
 import com.inskade.stint.ui.fragments.CollectFragment;
 import com.inskade.stint.ui.fragments.DeliverFragment;
 
@@ -25,7 +22,9 @@ public class ItemViewHolder extends RecyclerView.ViewHolder{
 
     private int position;
     private int fragmentCode;
-    private boolean doubleBackToExitPressedOnce = false;
+    private boolean doubleTapPressecOnce = false;
+
+    private Toast toast;
 
     private Item item;
 
@@ -55,30 +54,40 @@ public class ItemViewHolder extends RecyclerView.ViewHolder{
                 if(fragmentCode == Stint.COLLECT_FRAGMENT) {
                     if (item.paid) {
                         item.paid = false;
+                        item.delivered = false;
                     } else {
                         item.paid = true;
+                        item.delivered = false;
                     }
                     Stint.getInstance().database.itemModel().updateItem(item);
                     Stint.getInstance().updateDeliverStatus(item.itemCollectionID);
                     updateItemPaidStatus(item);
                     CollectFragment.getInstance().updateCostTextViews(CollectFragment.getInstance().recyclerViewPager.getCurrentPosition());
+                    CollectFragment.getInstance().refreshDataset();
                 } else if(fragmentCode == Stint.DELIVER_FRAGMENT) {
-                    if (doubleBackToExitPressedOnce) {
-                        Stint.getInstance().database.itemModel().removeItem(item.itemID);
-                        if(Stint.getInstance().database.itemModel().getPaidItems(item.itemCollectionID).isEmpty()) {
+                    if (doubleTapPressecOnce) {
+                        item.delivered = true;
+                        Stint.getInstance().database.itemModel().updateItem(item);
+                        if(Stint.getInstance().database.itemModel().getPaidAndNotDeliveredItems(item.itemCollectionID).isEmpty()) {
                             ItemCollection itemCollection = Stint.getInstance().database.itemCollectionModel().getSingleItemCollection(item.itemCollectionID);
                             itemCollection.deliverStatus = false;
                             Stint.getInstance().database.itemCollectionModel().updateItemCollection(itemCollection);
                         }
                         DeliverFragment.getInstance().refreshDataset();
                         CollectFragment.getInstance().refreshDataset();
+                        if (toast != null)
+                            toast.cancel();
+                    } else {
+                        doubleTapPressecOnce = true;
+                        if (toast != null)
+                            toast.cancel();
+                        toast = Toast.makeText(context, "Tap again to confirm delivery", Toast.LENGTH_SHORT);
+                        toast.show();
                     }
-                    doubleBackToExitPressedOnce = true;
-                    Toast.makeText(context, "Press BACK again to confirm delivery", Toast.LENGTH_SHORT).show();
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            doubleBackToExitPressedOnce = false;
+                            doubleTapPressecOnce = false;
                         }
                     }, 2000);
                 }

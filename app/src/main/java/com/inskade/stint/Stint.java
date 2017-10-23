@@ -35,7 +35,7 @@ public class Stint extends Application {
     }
 
     public void updateDeliverStatus(String itemCollectionID) {
-        ArrayList<Item> items = (ArrayList<Item>) database.itemModel().getPaidItems(itemCollectionID);
+        ArrayList<Item> items = (ArrayList<Item>) database.itemModel().getPaidAndNotDeliveredItems(itemCollectionID);
         if(!items.isEmpty()) {
             ItemCollection itemCollection = database.itemCollectionModel().getSingleItemCollection(itemCollectionID);
             itemCollection.deliverStatus = true;

@@ -8,17 +8,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/item_name"
-        android:textSize="@dimen/regular_text_size"
-        android:textColor="@color/colorAccent"
-        android:gravity="center"
-        android:text="Item Name"
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/pager_view_margin"
         android:layout_marginLeft="@dimen/pager_view_margin"
-        android:layout_marginRight="@dimen/pager_view_margin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_marginRight="@dimen/pager_view_margin">
+
+        <TextView
+            android:id="@+id/item_name"
+            android:textSize="@dimen/regular_text_size"
+            android:textColor="@color/colorPrimaryDark"
+            android:gravity="center"
+            android:text="Item Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/checked_out"
+            android:visibility="invisible"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_check_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+
+    </RelativeLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -31,7 +47,7 @@
 
         <TextView
             android:id="@+id/name_header"
-            android:text="@string/paid_header_text"
+            android:text="@string/name_header_text"
             android:gravity="left"
             android:textSize="@dimen/small_text_size"
             android:textColor="@color/grey"
@@ -41,7 +57,7 @@
 
         <TextView
             android:id="@+id/paid_header"
-            android:text="@string/name_header_text"
+            android:text="@string/paid_header_text"
             android:gravity="right"
             android:textSize="@dimen/small_text_size"
             android:textColor="@color/grey"

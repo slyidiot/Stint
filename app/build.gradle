@@ -7,8 +7,8 @@ android {
         applicationId "com.inskade.stint"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -19,7 +19,7 @@ android {
     }
 }
 ext {
-    supportLibVersion = '26.0.2'
+    supportLibVersion = '26.1.0'
 }
 
 dependencies {
@@ -33,10 +33,10 @@ dependencies {
     implementation 'com.github.florent37:materialtextfield:1.0.7'
     implementation 'com.github.lsjwzh.RecyclerViewPager:lib:v1.1.2@aar'
     implementation 'com.h6ah4i.android.materialshadowninepatch:materialshadowninepatch:0.6.5'
-    implementation 'android.arch.lifecycle:extensions:1.0.0-alpha9'
-    implementation 'android.arch.persistence.room:runtime:1.0.0-alpha9'
-    annotationProcessor 'android.arch.lifecycle:compiler:1.0.0-alpha9'
-    annotationProcessor 'android.arch.persistence.room:compiler:1.0.0-alpha9'
+    implementation 'android.arch.lifecycle:extensions:1.0.0-rc1'
+    implementation 'android.arch.persistence.room:runtime:1.0.0-rc1'
+    annotationProcessor 'android.arch.lifecycle:compiler:1.0.0-rc1'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.0.0-rc1'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {

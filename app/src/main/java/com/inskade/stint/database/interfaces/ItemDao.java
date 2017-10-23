@@ -22,6 +22,9 @@ public interface ItemDao {
     @Query("select * from item where itemCollectionID = :itemCollectionID")
     public List<Item> getItemsByID(String itemCollectionID);
 
+    @Query("select * from item where paid = 1 and delivered = 0 and itemCollectionID = :itemCollectionID")
+    public List<Item> getPaidAndNotDeliveredItems(String itemCollectionID);
+
     @Query("select * from item where paid = 1 and itemCollectionID = :itemCollectionID")
     public List<Item> getPaidItems(String itemCollectionID);
 

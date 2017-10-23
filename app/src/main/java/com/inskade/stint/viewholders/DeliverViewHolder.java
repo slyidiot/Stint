@@ -13,7 +13,6 @@ import com.inskade.stint.adapters.ItemRecyclerAdapter;
 import com.inskade.stint.database.model.Item;
 import com.inskade.stint.database.model.ItemCollection;
 import com.inskade.stint.misc.TypefaceCache;
-import com.inskade.stint.ui.fragments.CollectFragment;
 import com.inskade.stint.ui.fragments.DeliverFragment;
 
 import java.util.ArrayList;
@@ -65,7 +64,7 @@ public class DeliverViewHolder extends RecyclerView.ViewHolder{
         name.setText(itemCollection.itemName.toUpperCase());
 
         //TODO:Remove this
-        items = (ArrayList<Item>) Stint.getInstance().database.itemModel().getPaidItems(itemCollection.id);
+        items = (ArrayList<Item>) Stint.getInstance().database.itemModel().getPaidAndNotDeliveredItems(itemCollection.id);
         itemRecyclerAdapter.setItems(items);
         if(items.isEmpty()) {
             itemCollection.deliverStatus = false;
